@@ -1,0 +1,12 @@
+{
+  "name": "downloads.openwisp.io",
+  "private": true,
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "node --check site/script.js && node --test tests/*.test.mjs"
+  },
+  "devDependencies": {
+    "prettier": "3.8.3"
+  }
+}
