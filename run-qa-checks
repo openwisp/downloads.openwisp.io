@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-npm run format:check
+openwisp-qa-check \
+  --skip-checkmigrations \
+  --skip-checkmakemigrations \
+  --skip-checkcommit \
+  --skip-flake8 \
+  --skip-isort \
+  --skip-black \
+  --skip-checkrst \
+  --csslinter \
+  --jslinter
 npm test

@@ -14,12 +14,19 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: requirements-test.txt
       - uses: actions/setup-node@v6
         with:
           node-version: 24
           cache: npm
       - name: Install dependencies
-        run: npm ci
+        run: |
+          python -m pip install --upgrade -r requirements-test.txt
+          npm ci
       - name: Run QA checks and tests
         run: ./run-qa-checks
 
@@ -40,4 +47,4 @@ jobs:
         with:
           project_id: ${{ secrets.GCS_PROJECT_ID }}
       - name: Deploy root UI assets
-        run: ./deploy
+        run: make deploy

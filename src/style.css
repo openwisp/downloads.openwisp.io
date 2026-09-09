@@ -1,73 +1,113 @@
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://openwisp.org/theme/webfonts/Inter/Inter-normal-400.woff2')
+    format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('https://openwisp.org/theme/webfonts/Inter/Inter-normal-600.woff2')
+    format('woff2');
+}
+
+:root {
+  --orange: #e36914;
+  --orange-dark: #b15210;
+  --orange-light: #fef1e8;
+  --grey-dark: #101828;
+  --grey-light: #475467;
+  --grey-light-border: #d0d5dd;
+  --background: #f5f5f5;
+}
+
 body {
-  font-size: large;
-  background: #f4f7f6;
-  font-family:
-    'Roboto', 'Lucida Grande', 'DejaVu Sans', 'Bitstream Vera Sans', Verdana, Arial,
-    sans-serif;
+  min-width: 320px;
+  margin: 0;
+  color: var(--grey-light);
+  background: var(--background);
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  background: #f4f7f6;
-  margin: 100px 60px;
-  height: auto;
-  min-width: 1200px;
-  border: 1px solid #e8e8e8;
-  border-radius: 8px;
+  max-width: 1200px;
+  min-height: 0;
+  margin: 3rem auto;
+  border: 1px solid var(--grey-light-border);
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0px 0px 6px #f4f7f6;
-  padding: auto 5rem;
+  background: #fff;
+  box-shadow: 0 4px 12px rgb(16 24 40 / 8%);
 }
 
 .header {
   display: flex;
-  padding: 1rem;
-  border-bottom: 2px solid #f6f6f6;
-  background-color: rgba(255, 255, 255, 0.25);
-  color: #666;
-  background: #fcfcfc;
+  align-items: center;
+  min-height: 96px;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--grey-light-border);
+  background: #fff;
 }
 
 .header a {
   display: block;
-  background: url(https://openwisp.org/images/logo.svg) no-repeat scroll 0 50% / 100%;
+  width: 155px;
+  height: 89px;
+  background: url('https://openwisp.org/theme/images/logo-black.svg') no-repeat left
+    center / contain;
   text-indent: -2000px;
   overflow: hidden;
-  margin-left: 2rem;
-  margin-right: auto;
-  width: 200px;
-  height: 115px;
 }
 
 .content {
-  padding: 3rem;
-  color: #333;
+  padding: 1rem 2rem;
+  color: var(--grey-light);
   background: #fff;
 }
 
+pre {
+  margin: 0;
+}
+
 #navigation a {
-  font-size: x-large;
+  color: var(--grey-light);
+  font-size: 0.875rem;
+  font-weight: 600;
 }
 
 #listing {
-  padding: 1rem;
   width: 100%;
 }
+
 a {
-  color: #df5d43;
-  text-decoration: none;
+  color: var(--orange);
+  text-decoration: underline;
 }
+
+a:visited {
+  color: var(--orange);
+}
+
 a:link,
-:visited {
+a:visited {
   transition:
     color 0.15s,
-    background 0.15s;
+    background-color 0.15s;
 }
+
 a:hover,
 :focus {
-  text-decoration: underline;
+  color: var(--orange-dark);
+  text-decoration: none;
 }
 
 a.up {
@@ -91,15 +131,29 @@ a.icon {
 
 th {
   cursor: pointer;
-  color: #666;
+  padding: 0.875rem 1rem;
+  color: var(--grey-dark);
+  background: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
+
+th:nth-child(n + 2) {
+  text-align: end;
+}
+
 table {
+  width: 100%;
   border-collapse: collapse;
 }
+
 thead {
   display: table-header-group;
   vertical-align: middle;
   border-color: inherit;
+  border-bottom: 2px solid var(--grey-light-border);
 }
 tbody {
   display: table-row-group;
@@ -110,8 +164,51 @@ tr {
   display: table-row;
   vertical-align: inherit;
   border-color: inherit;
-  text-align: center;
+  border-bottom: 1px solid var(--grey-light-border);
+  text-align: left;
 }
+
+tbody tr:hover {
+  background: var(--orange-light);
+}
+
+td {
+  padding: 0.875rem 1rem;
+}
+
+td.detailsColumn {
+  color: var(--grey-light);
+  font-size: 0.875rem;
+  text-align: end;
+}
+
 td:nth-child(1) {
   text-align: start;
+}
+
+@media (width <= 640px) {
+  .container {
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .header {
+    padding: 1.25rem;
+  }
+
+  .content {
+    padding: 1.25rem;
+  }
+
+  th,
+  td {
+    padding: 0.75rem 0.5rem;
+  }
+
+  th:nth-child(2),
+  td:nth-child(2) {
+    display: none;
+  }
 }
