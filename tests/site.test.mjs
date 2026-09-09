@@ -17,13 +17,27 @@ test('the page references the listing assets and bucket endpoint', async () => {
   assert.match(index, /src="\.\/script\.js"/);
   assert.match(index, /href="\.\/style\.css"/);
   const styles = await readFile(new URL('style.css', src), 'utf8');
-  assert.match(styles, /https:\/\/openwisp\.org\/theme\/images\/logo-black\.svg/);
+  assert.match(styles, /url\('\.\/images\/logo-black\.svg'\)/);
+  assert.match(styles, /url\('\.\/webfonts\/Inter\/Inter-normal-400\.woff2'\)/);
+  assert.match(styles, /url\('\.\/webfonts\/Inter\/Inter-normal-600\.woff2'\)/);
+  assert.doesNotMatch(styles, /https?:\/\//);
+  await readFile(new URL('images/logo-black.svg', src));
+  await readFile(new URL('webfonts/Inter/Inter-normal-400.woff2', src));
+  await readFile(new URL('webfonts/Inter/Inter-normal-600.woff2', src));
 });
 
 test('the deployment allowlist contains every root asset', async () => {
   const makefile = await readFile(new URL('../Makefile', import.meta.url), 'utf8');
 
-  for (const asset of ['index.html', 'style.css', 'script.js', 'circle.gif']) {
+  for (const asset of [
+    'index.html',
+    'style.css',
+    'script.js',
+    'circle.gif',
+    'images/logo-black.svg',
+    'webfonts/Inter/Inter-normal-400.woff2',
+    'webfonts/Inter/Inter-normal-600.woff2',
+  ]) {
     assert.match(makefile, new RegExp(`ASSETS :=.*${asset}`, 's'));
   }
   assert.doesNotMatch(makefile, /rsync|delete-unmatched-destination-objects/);

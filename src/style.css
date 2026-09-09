@@ -3,8 +3,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('https://openwisp.org/theme/webfonts/Inter/Inter-normal-400.woff2')
-    format('woff2');
+  src: url('./webfonts/Inter/Inter-normal-400.woff2') format('woff2');
 }
 
 @font-face {
@@ -12,8 +11,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url('https://openwisp.org/theme/webfonts/Inter/Inter-normal-600.woff2')
-    format('woff2');
+  src: url('./webfonts/Inter/Inter-normal-600.woff2') format('woff2');
 }
 
 :root {
@@ -62,8 +60,7 @@ body {
   display: block;
   width: 155px;
   height: 89px;
-  background: url('https://openwisp.org/theme/images/logo-black.svg') no-repeat left
-    center / contain;
+  background: url('./images/logo-black.svg') no-repeat left center / contain;
   text-indent: -2000px;
   overflow: hidden;
 }

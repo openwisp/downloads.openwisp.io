@@ -1,5 +1,12 @@
 GCS_DOWNLOADS_BUCKET_NAME ?= downloads.openwisp.io
-ASSETS := index.html style.css script.js circle.gif
+ASSETS := \
+	index.html \
+	style.css \
+	script.js \
+	circle.gif \
+	images/logo-black.svg \
+	webfonts/Inter/Inter-normal-400.woff2 \
+	webfonts/Inter/Inter-normal-600.woff2
 DRY_RUN ?= 0
 
 .PHONY: qa-format serve deploy

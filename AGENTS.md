@@ -11,6 +11,7 @@ The deployed files are in `src/`:
 - `style.css` defines the page styles.
 - `script.js` fetches and renders the bucket listing.
 - `circle.gif` is the loading indicator.
+- `images/` and `webfonts/` contain the self-hosted visual assets.
 
 `make deploy` uploads only these files to the bucket root. Package artifacts
 under bucket prefixes are deployed by their owning repositories and must never
