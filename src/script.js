@@ -105,6 +105,10 @@ function sortFunction(a, b) {
   }
 }
 
+function sortDirectories(directories) {
+  return directories.sort((a, b) => b.Key.localeCompare(a.Key));
+}
+
 function getS3Data(marker, html) {
   var gcs_rest_url = createS3QueryUrl(marker);
   // set loading notice
@@ -214,7 +218,7 @@ function getInfoFromS3Data(xml) {
   // clang-format off
   return {
     files: files,
-    directories: directories,
+    directories: sortDirectories(directories),
     prefix: $(xml.find('Prefix')[0]).text(),
     nextMarker: encodeURIComponent(nextMarker),
   };
@@ -275,6 +279,10 @@ function isDate(date) {
   return new Date(date) !== 'Invalid Date' && !isNaN(new Date(date));
 }
 
+function formatDate(date) {
+  return new Date(date).toISOString().replace('T', ' ').replace('.000Z', ' UTC');
+}
+
 function renderRow(item, cols) {
   var row = '';
   var className =
@@ -299,9 +307,7 @@ function renderRow(item, cols) {
         <td class="detailsColumn" data-value="${
           isDate(item.LastModified) ? new Date(item.LastModified).getTime() : 0
         }">
-          ${
-            isDate(item.LastModified) ? new Date(item.LastModified).toDateString() : '-'
-          }
+          ${isDate(item.LastModified) ? formatDate(item.LastModified) : '-'}
         </td>
       </tr>`;
   // row +=

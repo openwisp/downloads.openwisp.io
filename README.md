@@ -5,9 +5,10 @@ Source for the static directory-listing application served at
 
 ## Development
 
-Install the Node.js dependencies and run the checks:
+Install the Python and Node.js dependencies and run the checks:
 
 ```sh
+python3 -m pip install -r requirements-test.txt
 npm ci
 ./run-qa-checks
 ```
@@ -15,33 +16,34 @@ npm ci
 Run a local web server at <http://localhost:8000>:
 
 ```sh
-./serve
+make serve
 ```
 
 Format the source files with:
 
 ```sh
-./qa-format
+make qa-format
 ```
 
 ## Deployment
 
-The deploy script uploads only `index.html`, `style.css`, `script.js`, and
-`circle.gif` to the root of `gs://downloads.openwisp.io`. It does not delete or
-synchronize any bucket content, so package artifacts published by other
-OpenWISP repositories are protected.
+The `deploy` Makefile target uploads the self-contained static application from
+`src/`, including the logo, favicon, and Inter font files, to
+`gs://downloads.openwisp.io`. It does not delete or synchronize any bucket
+content, so package artifacts published by other OpenWISP repositories are
+protected.
 
 Preview the upload commands locally:
 
 ```sh
-./deploy --dry-run
+make deploy DRY_RUN=1
 ```
 
 Deploy with an authenticated Google Cloud CLI account that can create and
 update objects in the bucket:
 
 ```sh
-./deploy
+make deploy
 ```
 
 GitHub Actions deploys after checks pass on a push to `master`. Configure these

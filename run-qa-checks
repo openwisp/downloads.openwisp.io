@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-npm run format:check
+PATH="$PWD/node_modules/.bin:$PATH" openwisp-qa-check \
+  --skip-checkendline \
+  --skip-checkmigrations \
+  --skip-checkmakemigrations \
+  --skip-checkcommit \
+  --skip-flake8 \
+  --skip-isort \
+  --skip-black \
+  --skip-checkrst \
+  --csslinter \
+  --jslinter
 npm test
