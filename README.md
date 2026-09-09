@@ -28,7 +28,7 @@ make qa-format
 ## Deployment
 
 The `deploy` Makefile target uploads the self-contained static application from
-`src/`, including the logo and Inter font files, to
+`src/`, including the logo, favicon, and Inter font files, to
 `gs://downloads.openwisp.io`. It does not delete or synchronize any bucket
 content, so package artifacts published by other OpenWISP repositories are
 protected.

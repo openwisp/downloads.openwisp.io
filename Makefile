@@ -4,6 +4,7 @@ ASSETS := \
 	style.css \
 	script.js \
 	circle.gif \
+	images/favicon.svg \
 	images/logo-black.svg \
 	webfonts/Inter/Inter-normal-400.woff2 \
 	webfonts/Inter/Inter-normal-600.woff2

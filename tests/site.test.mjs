@@ -14,6 +14,7 @@ test('the page references the listing assets and bucket endpoint', async () => {
     index,
     /BUCKET_URL = 'https:\/\/storage\.googleapis\.com\/downloads\.openwisp\.io\/'/,
   );
+  assert.match(index, /href="\.\/images\/favicon\.svg"/);
   assert.match(index, /src="\.\/script\.js"/);
   assert.match(index, /href="\.\/style\.css"/);
   const styles = await readFile(new URL('style.css', src), 'utf8');
@@ -22,6 +23,7 @@ test('the page references the listing assets and bucket endpoint', async () => {
   assert.match(styles, /url\('\.\/webfonts\/Inter\/Inter-normal-600\.woff2'\)/);
   assert.doesNotMatch(styles, /https?:\/\//);
   await readFile(new URL('images/logo-black.svg', src));
+  await readFile(new URL('images/favicon.svg', src));
   await readFile(new URL('webfonts/Inter/Inter-normal-400.woff2', src));
   await readFile(new URL('webfonts/Inter/Inter-normal-600.woff2', src));
 });
@@ -34,6 +36,7 @@ test('the deployment allowlist contains every root asset', async () => {
     'style.css',
     'script.js',
     'circle.gif',
+    'images/favicon.svg',
     'images/logo-black.svg',
     'webfonts/Inter/Inter-normal-400.woff2',
     'webfonts/Inter/Inter-normal-600.woff2',
