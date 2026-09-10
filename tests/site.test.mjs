@@ -17,6 +17,8 @@ test('the page references the listing assets and bucket endpoint', async () => {
   assert.match(index, /href="\.\/images\/favicon\.svg"/);
   assert.match(index, /src="\.\/script\.js"/);
   assert.match(index, /href="\.\/style\.css"/);
+  assert.match(index, /EXCLUDE_FILE = \[[^\]]*'images\/'/);
+  assert.match(index, /EXCLUDE_FILE = \[[^\]]*'webfonts\/'/);
   const styles = await readFile(new URL('style.css', src), 'utf8');
   assert.match(styles, /url\('\.\/images\/logo-black\.svg'\)/);
   assert.match(styles, /url\('\.\/webfonts\/Inter\/Inter-normal-400\.woff2'\)/);
